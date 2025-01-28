@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Pandoc
+        uses: pandoc/actions/setup@v1
+
       - name: Setup node
         uses: actions/setup-node@v4
         with:
@@ -27,8 +30,6 @@ jobs:
         shell: bash
         run: |
           npm install
-          
-          brew install pandoc
           
           npm run pandoc-spec
           
