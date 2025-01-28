@@ -19,7 +19,6 @@
     "pandoc-spec": "node --eval \"import('@legreq/pandoc-spec').then((m) => { m.exec() }).catch(e => console.error(e))\""
   },
   "devDependencies": {
-    "@legreq/pandoc-spec": "^1.0.3-beta",
-    "puppeteer": "^24.1.1"
+    "@legreq/pandoc-spec": "^1.0.3-beta"
   }
 }
