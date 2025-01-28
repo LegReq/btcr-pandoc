@@ -10,12 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          install-chromedriver: true
-          install-dependencies: true
-
       - name: Setup Pandoc
         uses: pandoc/actions/setup@v1
 
