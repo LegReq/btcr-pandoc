@@ -11,10 +11,9 @@ jobs:
 
     steps:
       - name: Setup Chrome
-        uses: abhi1693/setup-browser@v0.3.4
-        with:
-          browser: chrome
-          version: latest
+        uses: browser-actions/setup-chrome@v1
+        install-chromedriver: true
+        install-dependencies: true
 
       - name: Setup Pandoc
         uses: pandoc/actions/setup@v1
