@@ -1,0 +1,24 @@
+{
+  "name": "btcr-pandoc",
+  "version": "1.0.0-beta",
+  "description": "BTCR specification constructed using Pandoc",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LegReq/btcr-pandoc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LegReq/btcr-pandoc/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Kevin Dean",
+    "email": "kevin@legreq.com",
+    "url": "https://www.linkedin.com/in/kdean"
+  },
+  "scripts": {
+    "pandoc-spec": "node --eval \"import('@legreq/pandoc-spec').then((m) => { m.exec() }).catch(e => console.error(e))\""
+  },
+  "devDependencies": {
+    "@legreq/pandoc-spec": "^1.0.3-beta"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "debug": true,
+  "verbose": true,
+  "headerFile": "header.html",
+  "footerFile": "footer.html",
+  "inputFile": "index.md",
+  "outputFile": "index.html"
+}

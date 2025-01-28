@@ -1,0 +1,52 @@
+name: Push to main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start terminal session (pre build)
+        if: vars.TERMINAL_PRE_BUILD == 'true'
+        uses: mxschmitt/action-tmate@v3
+
+      - name: Build document
+        shell: bash
+        run: |
+          npm install
+          
+          brew install pandoc
+          
+          npm run pandoc-spec
+          
+          mkdir pages
+          mv index.html pages
+
+      - name: Start terminal session (post build)
+        if: vars.TERMINAL_POST_BUILD == 'true'
+        uses: mxschmitt/action-tmate@v3
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload pages directory
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

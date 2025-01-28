@@ -1,0 +1,45 @@
+## Privacy Considerations
+
+### did:btc1 Design Considerations
+
+#### Updates need not be public
+
+**did:btc1** was designed such that updates to DID documents are not required to be public. Bitcoin is used to publicly announce and anchor updates to DID documents, however the updates themselves can be kept private by DID controllers and provided through a sidecar mechanism at resolution time.
+
+#### DID documents need not be public
+
+Since updates to DID documents are not required to be public, neither are **did:btc1** DID documents. A **did:btc1** DID document is an initial document plus a series of updates to that DID document. To keep the DID document fully private, the DID controller can choose to use an externally resolved initial **did:btc1** and not place the initial DID document on a Content Addressable Storage system such as IPFS. The initial DID document can be provided at resolution time through a sidecar mechanism along with the collection of updates that can be verified against the relevant Beacon Signals for the DID being resolved.
+
+#### Offline DID generation
+
+**did:btc1** was designed to support offline DID generation, that is, the creation of a **did:btc1** identifier and associated DID document without any network calls to the Bitcoin blockchain. This is possible in both deterministic and externally resolvable DIDs.
+
+#### Beacon coordinators do not need to view or validate DID documents or document updates
+
+Beacon coordinators in **did:btc1** are entities that coordinate Aggregator Beacons and the corresponding Beacon Signals that announce and anchor an aggregated set of DID Update Payloads. However, in **did:btc1,** aggregators are able to coordinate Beacon Signals without needing to view or validate DID documents or the updates. Instead, they are provided with a hash or CID of the update for a specific DID which they include in the Beacon Signal according to the type of the Beacon.
+
+#### Consensus splits in implementation can destroy non-repudiation
+
+Because non-repudiation requires following a complete stream of updates to a DID, any consensus forks in which DID updates to apply can be used to permanently diverge the history for a DID, and thus the key material, creating alternate attestation histories.  As a concrete example, a seemingly small difference between two clients in interpretation of the specification could be used fraudently to sign a loan in one history and claim that it was never signed in another history.
+
+In order to prevent consensus splits, **did:btc1** needs a particularly good test suite.  It must be designed to challenge all the foreseeable edge cases as well as maintained to find new ones.
+
+### Considerations Deploying did:btc1
+
+#### Update payloads stored in Content Addressable Storage (CAS) systems are publicly accessible
+
+Update payloads stored in Content Addressable Storage (CAS) such as IPFS should be considered public. Anyone may retrieve this information (assuming they have the CID) and use it to track the DID over time. IPFS node operators would have access to all content stored on IPFS and could choose to index certain data like DID update payloads. Including the updates posted by that DIDs beacon. This may advertise information about the DID that the controller wishes to remain private.
+
+Those parties most concerned about privacy should maintain their DID update payloads in a sidecar manner and provide them to necessary parties during resolution. It is recommended not to include any sensitive data other than the necessary DID update data.
+
+#### Beacon coordinators know the DIDs being aggregated by a cohort
+
+Within Sparse Merkle Tree (SMT) Beacons, the DID is used as a path to a leaf node in the SMT. The coordinator must know these paths for them to be able to construct the tree and generate the correct proof paths. Within content identifier (CID) based Beacons, the coordinator must construct an aggregated bundle that includes all DIDs aggregated as a key to the CID for that DID's update payload. This means that for both types of Aggregator Beacons, the coordinator necessarily MUST know all DIDs being aggregated by a cohort.
+
+#### CID Aggregation cohort members know all DIDs that are updated
+
+Cohort members participating in a CID Aggregator Beacon learn all DIDs that are updated in each Beacon Signal. This is because they SHOULD verify the contents of the Beacon Signal before authorizing it and a CID Aggregator's Beacon Signal contains a CID to an Update Bundle. An Update Bundle is a JSON object mapping **did:btc1** identifiers to CID values for individual DID Update Payloads. Each DID controller SHOULD independently retrieve and verify the contents of the Update Bundle to ensure it contains the expected update for their DID.
+
+#### In a system with non-repudiation, DID Document history is revealed
+
+Although it might seem obvious, one of the side effects of using a DID is that a DID controller's relying party will see their DID Document.  In addition, resolving a DID Document requires making available to the resolver all the prior DID Document updates.
