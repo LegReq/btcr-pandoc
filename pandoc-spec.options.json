@@ -1,8 +1,12 @@
 {
   "debug": true,
   "verbose": true,
+  "autoDate": true,
   "headerFile": "header.html",
   "footerFile": "footer.html",
+  "inputDirectory": "spec",
   "inputFile": "index.md",
-  "outputFile": "_site/index.html"
+  "outputDirectory": "_site",
+  "cleanOutput": true,
+  "outputFile": "index.html"
 }

@@ -1,3 +1,7 @@
+---
+lang: en
+...
+
 # did:btc1 DID Method Specification
 
 **did:btc1** is a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document.
