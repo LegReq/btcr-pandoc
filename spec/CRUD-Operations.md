@@ -349,7 +349,7 @@ through the `resolutionOptions`. If `sidecarData` is present it is used to proce
 - Set `signalTx` to `beaconSignal.tx`
 - Set `signalId` to `signalTx.id`
 - Set `signalSidecarData` to `sidecarData[signalId]` TODO: formalize structure of sidecarData
-- Set `didUpdatePayload` to the result of passing `signalTx` and `signalSidecarData` to the Process Beacon Signal algorithm defined by the corresponding Beacon `type`. See [Section 5 Beacons](#5-update-beacons).
+- Set `didUpdatePayload` to the result of passing `signalTx` and `signalSidecarData` to the Process Beacon Signal algorithm defined by the corresponding Beacon `type`. See [Update Beacons].
 - If `didUpdatePayload` is not null, push `didUpdatePayload` to `updates`
 1. Return `updates`
 
