@@ -16,6 +16,6 @@
     "url": "https://www.linkedin.com/in/kdean"
   },
   "devDependencies": {
-    "@legreq/pandoc-spec": "^1.0.6-beta"
+    "@legreq/pandoc-spec": "^1.0.8-beta"
   }
 }
