@@ -25,15 +25,3 @@ Copyright &copy; 2024 Digital Contract Design
 - Kate Sills <katelynsills@gmail.com> 
 
 ## Licence Statement: TODO {.unnumbered .unlisted}
-
-```{.include}
-Introduction-and-Motivation.md
-Terminology.md
-Syntax.md
-CRUD-Operations.md
-Update-Beacons.md
-Security-Considerations.md
-Privacy-Considerations.md
-References.md
-Appendix.md
-```

@@ -5,7 +5,18 @@
   "headerFile": "header.html",
   "footerFile": "footer.html",
   "inputDirectory": "spec",
-  "inputFile": "index.md",
+  "inputFile": [
+    "index.md",
+    "Introduction-and-Motivation.md",
+    "Terminology.md",
+    "Syntax.md",
+    "CRUD-Operations.md",
+    "Update-Beacons.md",
+    "Security-Considerations.md",
+    "Privacy-Considerations.md",
+    "References.md",
+    "Appendix.md"
+  ],
   "outputDirectory": "_site",
   "cleanOutput": true,
   "outputFile": "index.html"
